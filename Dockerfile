@@ -1,12 +1,11 @@
-FROM phusion/baseimage
+FROM debian:9-slim 
 
-MAINTAINER Nil Portugués Calderó <contact@nilportugues.com>
-
-CMD ["/sbin/my_init"]
+MAINTAINER Bertrand Presles <bertrand@presles.fr>
 
 RUN apt-get -y update
-RUN apt-get -y install software-properties-common
-RUN apt-add-repository -y ppa:ansible/ansible
+RUN apt-get -y install software-properties-common gnupg2
+RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" > /etc/apt/sources.list.d/ansible.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
 RUN apt-get -y update
 RUN apt-get -y install ansible openssh-client rsync
 RUN ansible-galaxy install --force carlosbuenosvinos.ansistrano-deploy carlosbuenosvinos.ansistrano-rollback --roles-path=/usr/share/ansible/roles
@@ -22,10 +21,5 @@ RUN cd /home/ansistrano/.ssh/ && ssh-keygen -t rsa -b 4096 -C '' -f /home/ansist
 RUN chown ansistrano:ansistrano -Rf /home/ansistrano/
 WORKDIR /home/ansistrano/
 
-## Run as ansistrano inside the container by default
-COPY start.sh /start.sh
-ENTRYPOINT ["/start.sh"]
-
 CMD [ "ansible" ]
-
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
