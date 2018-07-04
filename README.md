@@ -1,6 +1,6 @@
 # Ansistrano Docker
 [![Image Size](https://img.shields.io/imagelayers/image-size/nilportugues/ansistrano/latest.svg)](https://imagelayers.io/?images=bpresles/ansistrano:latest)
-[![Docker Pulls](https://img.shields.io/docker/pulls/bpresles/ansistrano.svg)](https://hub.docker.com/r/bpresles/docker-ansistrano/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bpresles/docker-ansistrano.svg)](https://hub.docker.com/r/bpresles/docker-ansistrano/)
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://paypal.me/BertrandPresles)
 
 ## Building the container
